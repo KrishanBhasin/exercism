@@ -6,7 +6,7 @@ def sieve(num):
 	for i in primes_dictionary:
 		for j in range(3 , (i//2)+2 , 2):
 			if j==i:
-				pass
+				continue
 			elif i % j ==0:
 				primes_dictionary[i] = False
 		
