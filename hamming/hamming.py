@@ -1,4 +1,5 @@
 def distance(strand1,strand2):
+	#ensure both strands are equal length
 	strand1 = strand1[:len(strand2)]
 	strand2 = strand2[:len(strand1)]
 	
