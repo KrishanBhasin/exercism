@@ -1,14 +1,14 @@
 import string
 
-intab = string.ascii_lowercase
-outtab= string.ascii_lowercase[::-1]
+intab = string.ascii_letters
+outtab= string.ascii_lowercase[::-1]*2
 
-encode_trantab = str.maketrans(intab,outtab)
-decode_trantab = str.maketrans(outtab,intab)
+trantab = str.maketrans(intab,outtab)
+
 
 def encode(word):
 	########lowercase --- translate ---------------remove spaces
-	word = word.lower().translate(encode_trantab).replace(" ","")
+	word = word.lower().translate(trantab).replace(" ","")
 
 	#remove punctuation
 	for a in string.punctuation:
@@ -24,4 +24,4 @@ def encode(word):
 	
 def decode(word):
 	#return lowercase --- translate ---------------remove spaces
-	return word.lower().translate(decode_trantab).replace(" ","")
+	return word.lower().translate(trantab).replace(" ","")
