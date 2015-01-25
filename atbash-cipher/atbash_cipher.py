@@ -8,7 +8,7 @@ trantab = str.maketrans(intab,outtab)
 
 def encode(word):
 	########-- translate ----------remove spaces
-	word = word.translate(trantab).replace(" ","")
+	word = word.translate(trantab)
 
 	#remove punctuation
 	allow = string.ascii_lowercase + string.digits
