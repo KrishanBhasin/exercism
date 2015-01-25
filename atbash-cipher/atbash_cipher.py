@@ -1,18 +1,19 @@
 import string
+import re
 
 intab = string.ascii_letters
 outtab= string.ascii_lowercase[::-1]*2
 
 trantab = str.maketrans(intab,outtab)
 
-
 def encode(word):
-	########lowercase --- translate ---------------remove spaces
-	word = word.lower().translate(trantab).replace(" ","")
+	########-- translate ----------remove spaces
+	word = word.translate(trantab).replace(" ","")
 
 	#remove punctuation
-	for a in string.punctuation:
-		word = word.replace(a,"")	
+	allow = string.ascii_lowercase + string.digits
+	word = re.sub('[^%s]' % allow, '', word)
+	#use regex to substitute non letters or digits to empty strings
 
 	#add spaces every 5 chars
 	index_adjuster = 0
@@ -23,5 +24,5 @@ def encode(word):
 	return word
 	
 def decode(word):
-	#return lowercase --- translate ---------------remove spaces
-	return word.lower().translate(trantab).replace(" ","")
+	#return--- translate ----------remove spaces
+	return word.translate(trantab).replace(" ","")
