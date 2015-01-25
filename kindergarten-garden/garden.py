@@ -21,14 +21,10 @@ class Garden():
 		self.line1_answer = self.line1[self.student_index*2:self.student_index*2 +2]
 		self.line2_answer = self.line2[self.student_index*2:self.student_index*2 +2]
 		
-		answer_letters = []
-		answer_words = []
+		answer = []
 		
 		for letter in self.line1_answer:
-			answer_letters.append(letter)
+			answer.append(self.plant_dict[letter])
 		for letter in self.line2_answer:
-			answer_letters.append(letter)
-			
-		for entry in answer_letters:
-			answer_words.append(self.plant_dict[entry])
-		return answer_words
+			answer.append(self.plant_dict[letter])
+		return answer

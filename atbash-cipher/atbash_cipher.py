@@ -1,7 +1,8 @@
 import string
 
-intab = "abcdefghijklmnopqrstuvwxyz"
-outtab= "zyxwvutsrqponmlkjihgfedcba"
+intab = string.ascii_lowercase
+outtab= string.ascii_lowercase[::-1]
+
 encode_trantab = str.maketrans(intab,outtab)
 decode_trantab = str.maketrans(outtab,intab)
 
