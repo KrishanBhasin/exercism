@@ -4,7 +4,7 @@ class Garden():
 		self.line1, self.line2 = lines_of_plants.split("\n")
 		self.class_size = len(self.line1)/2
 		self.plant_dict = {
-		'V':'Violoets',
+		'V':'Violets',
 		'R':'Radishes',
 		'C':'Clover',
 		'G':'Grass'
@@ -12,7 +12,7 @@ class Garden():
 		if students == None:
 			self.students = ['A','B','C','D','E','F','G','H','I','J','K','L']
 		else:
-			self.students = [entry[0] for entry in students]
+			self.students = sorted([entry[0] for entry in students])
 	
 	def plants(self,name):
 		self.name = name[0]
