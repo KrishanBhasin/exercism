@@ -9,8 +9,10 @@ def check_if_multiple(test_num,list_of_multiples):
 def sum_of_multiples(number, multiples_list = None):
 	if multiples_list == None:
 		multiples_list = [3,5]
-	answer=0
-	for i in range(1,number):
-		answer+=check_if_multiple(i,multiples_list)
-	return answer
+	return sum(list(filter(lambda x: check_if_multiple(x,multiples_list),range(1,number))))
+	#the above line:
+		#uses a lambda to call check_if_multiple multiple times with different values of x, fixing the mutliples list
+		#filters out any returns that are false (returned zero)
+		#lists the returned answers
+		#and sums them together - as requested!
 	
