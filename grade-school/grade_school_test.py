@@ -14,24 +14,24 @@ class SchoolTest(unittest.TestCase):
 
     def test_add_student(self):
         self.school.add("Aimee", 2)
-        self.assertEqual({2: {"Aimee"}}, self.school.db)
+        self.assertEqual({2: ["Aimee"]}, self.school.db)
 
     def test_add_more_students_in_same_class(self):
         self.school.add("James", 2)
         self.school.add("Blair", 2)
         self.school.add("Paul", 2)
-        self.assertEqual({2: {"James", "Blair", "Paul"}}, self.school.db)
+        self.assertEqual({2: ["James", "Blair", "Paul"]}, self.school.db)
 
     def test_add_students_to_different_grades(self):
         self.school.add("Chelsea", 3)
         self.school.add("Logan", 7)
-        self.assertEqual({3: {"Chelsea"}, 7: {"Logan"}}, self.school.db)
+        self.assertEqual({3: ["Chelsea"], 7: ["Logan"]}, self.school.db)
 
     def test_get_students_in_a_grade(self):
         self.school.add("Franklin", 5)
         self.school.add("Bradley", 5)
         self.school.add("Jeff", 1)
-        self.assertEqual({"Franklin", "Bradley"}, self.school.grade(5))
+        self.assertEqual(["Franklin", "Bradley"], self.school.grade(5))
 
     def test_get_students_in_a_non_existant_grade(self):
         self.assertEqual(set(), self.school.grade(1))
@@ -48,7 +48,7 @@ class SchoolTest(unittest.TestCase):
                 self.school.add(student, grade)
 
         result = self.school.sort()
-
+        
         # Attempts to catch false positives
         self.assertTrue(isinstance(result, Sequence) or
                         isinstance(result, GeneratorType) or
