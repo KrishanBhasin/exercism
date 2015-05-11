@@ -19,7 +19,7 @@ def numeral(arabic):
 	answer = ''
 	for entry in symbols:
 		while arabic - entry >= 0:
-			answer += symbols[entry]
-			arabic -= entry
+			n,arabic = divmod(arabic,entry)
+			answer += n*symbols[entry]
 
 	return answer
