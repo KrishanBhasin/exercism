@@ -2,36 +2,23 @@ class SpaceAge:
 	def __init__(self, age):
 		self.seconds = age
 		self.seconds_in_earth_year  = 31557600
-		self.seconds_in_mercury_year = 0.2408467 * self.seconds_in_earth_year
-		self.seconds_in_venus_year_year = 0.61519726 * self.seconds_in_earth_year
-		self.seconds_in_mars_year = 1.8808158 * self.seconds_in_earth_year
-		self.seconds_in_jupiter_year_year = 11.862615 * self.seconds_in_earth_year
-		self.seconds_in_saturn_year = 29.447498 * self.seconds_in_earth_year
-		self.seconds_in_uranus_year = 84.016846 * self.seconds_in_earth_year
-		self.seconds_in_neptune_year = 164.79132 * self.seconds_in_earth_year	
-	
-	def on_earth(self):
-		ans = self.seconds/self.seconds_in_earth_year
-		return float('%.2f' % ans)
+
+		self.age_db = {
+		'on_earth': 1.0,
+		'on_mercury': 0.2408467,
+		'on_venus': 0.61519726,
+		'on_mars': 1.8808158,
+		'on_jupiter': 11.862615,
+		'on_saturn': 29.447498,
+		'on_uranus': 84.016846,
+		'on_neptune': 164.79132
+		}
 		
-	def on_mercury(self):
-		ans = self.seconds/self.seconds_in_mercury_year
-		return float('%.2f' % ans)
-	def on_venus(self):
-		ans = self.seconds/self.seconds_in_venus_year_year
-		return float('%.2f' % ans)
-	def on_mars(self):
-		ans = self.seconds/self.seconds_in_mars_year
-		return float('%.2f' % ans)
-	def on_jupiter(self):
-		ans = self.seconds/self.seconds_in_jupiter_year_year
-		return float('%.2f' % ans)
-	def on_saturn(self):
-		ans = self.seconds/self.seconds_in_saturn_year
-		return float('%.2f' % ans)
-	def on_uranus(self):
-		ans = self.seconds/self.seconds_in_uranus_year
-		return float('%.2f' % ans)
-	def on_neptune(self):
-		ans = self.seconds/self.seconds_in_neptune_year
-		return float('%.2f' % ans)
+	def __getattr__(self,name):
+		def age_calculation():
+			return round((self.seconds/self.seconds_in_earth_year)/self.age_db[name],2)
+	
+		self.case = self.age_db.get(name)
+		if not self.case:
+			raise AttributeError
+		return age_calculation
