@@ -19,19 +19,25 @@ class Luhn:
         """
         iterates through the provided number, doubling every second digit, starting from the RHS
         """
+        for_doubling = self.input
+#        while for_doubling:
+#            self.for_doubling,testdigit = divmod(for_doubling,10)
+#            if testdigit%2==0:
+#                self.new_value = self.LuhnDouble(testdigit)
+#            self.addEndsList.append(new_value)
+        
         self.input = str(self.input) #convert to string so we can cycle through it digit by digit
         for i in range(1,len(self.input)+1):
             if i%2==0:
-                self.doubled_value = self.LuhnDouble(int(self.input[-i]))
-                self.addEndsList.append(self.doubled_value)
+                self.new_value = self.LuhnDouble(int(self.input[-i]))
             else:
-                self.non_doubled_value = int(self.input[-i])
-                self.addEndsList.append(self.non_doubled_value)
+                self.new_value = int(self.input[-i])
+            self.addEndsList.append(self.new_value)
         return self.addEndsList #return a list containing the calculated values after every second digit has been 'doubled'
         
     def checksum(self):
         list_after_adding = self.addends()
-        return int(str(sum(list_after_adding))[-1])#return only the last digit of the checksum calculation
+        return sum(list_after_adding)%10        #return only the last digit of the checksum calculation
         
     def is_valid(self):
         if self.checksum() == 0:
